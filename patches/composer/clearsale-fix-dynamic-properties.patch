@@ -1,0 +1,68 @@
+*** Begin Patch
+*** Update File: vendor/clearsale/integration/Model/Auth/Entity/Credentials.php
+@@
+ <?php
+ namespace Clearsale\Integration\Model\Auth\Entity;
+ 
+ class Credentials {
+-	public $ApiKey;
+-	public $ClientID;
+-	public $ClientSecret;
++    /**
++     * API Key for authentication
++     *
++     * @var string|null
++     */
++    public $ApiKey;
++
++    /**
++     * Client ID for authentication
++     *
++     * @var string|null
++     */
++    public $ClientID;
++
++    /**
++     * Client Secret for authentication
++     *
++     * @var string|null
++     */
++    public $ClientSecret;
+ 
+ }
+*** End Patch
+
+*** Begin Patch
+*** Update File: vendor/clearsale/integration/Model/Order/Entity/Payment.php
+@@
+ <?php
+ namespace Clearsale\Integration\Model\Order\Entity;
+ 
+ class Payment {
+-	public $Date;
+-	public $Type;
+-	public $Gateway;
+-	public $CardNumber;
+-	public $CardHolderName;
+-	public $Amount;
+-	public $PaymentTypeID;
+-	public $CardBin;
+-    public $CardExpirationDate;
++    public $Date;
++    public $Type;
++    public $Gateway;
++    public $CardNumber;
++    public $CardHolderName;
++    public $Amount;
++    public $PaymentTypeID;
++    public $CardBin;
++    public $CardExpirationDate;
++
++    /**
++     * Card type (e.g. VISA, MASTERCARD) - prevents dynamic property creation on PHP 8.2+
++     *
++     * @var string|null
++     */
++    public $CardType;
+ }
+*** End Patch

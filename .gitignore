@@ -1,0 +1,20 @@
+# Magento specific
+/var/*
+!/var/.htaccess
+/generated/*
+/pub/static/*
+!/pub/static/.htaccess
+/pub/media/*
+!/pub/media/.htaccess
+/app/etc/env.php
+/vendor/
+/node_modules/
+
+# System files
+.DS_Store
+.idea/
+*.swp
+*.swo
+*~
+*.zip
+**/*.zip

@@ -1,0 +1,74 @@
+How to install Stella Multi Purpose Magento 2  / Adobe Commerce theme with RTL support?
+
+Before installing the theme, it is necessary to set up Magento 2. Therefore, we have already set up Magento 2. Here are the steps provided in a video guide to install and set up our Stella Magento 2 theme for your Magento 2 store.
+
+Step 1: In your Magento 2 root directory, upload the "Poco_Themes-1.4.2.zip" file.
+
+Step 2: Extract the contents of the zip file into your Magento root directory.
+
+Step 3: Using the command prompt/terminal, navigate to your Magento 2 installation directory.
+
+Next, execute the following commands:
+
+unzip Poco_Themes-1.4.2.zip
+
+This will extract the contents of the zip file and you should now see "app" and "pub" directories listed in your Magento root directory.
+
+Step 4: Proceed to the Terminal section to begin the theme installation process.
+
+Please execute the following commands in the Terminal section to complete the theme installation process:
+
+php82 bin/magento setup:upgrade
+php82 bin/magento setup:static-content:deploy -f
+php82 bin/magento indexer:reindex
+php82 bin/magento cache:clean
+php82 bin/magento cache:flush
+
+These commands will upgrade the setup, deploy static content, reindex the data, clean the cache, and flush the cache respectively.
+
+Step 5: Log in to the Admin section of your Magento 2 website.
+
+In the backend, navigate to Poco Themes >> Install Theme Demo Data.
+
+Then, import the static blocks and CMS pages by following the steps provided.
+
+ -Click on "Import CMS Pages". It will create the CMS Pages which are used in the theme.
+ 
+ -Click on "Import Static Blocks". It will create the blocks which are used in the theme.
+
+Step 6: Import the sample data for the theme.
+
+To do this, follow these steps:
+
+Open the command prompt/terminal and navigate to your Magento installation directory.
+
+Execute the following commands:
+
+php82 bin/magento magebees:pocotheme:installsampledata
+php82 bin/magento cache:clean
+php82 bin/magento cache:flush
+
+The first command will install the theme sample data, while the other two commands will clean and flush the cache.
+
+
+
+
+
+Step 7: In the "Setup Demo" section, click on the "Import Demo" button to import the demo settings into your store.
+
+After that, clean all the caches of your store by going to System >> Tools >> Cache Management.
+
+Next, go to Poco Themes >> Configuration, and then click on the "Save Config" button.
+
+
+
+Step 8: Apply the Poco Themes from the admin panel.
+
+To do this, follow these steps:
+In the backend, go to Content >> Design >> Configuration.
+
+Click on "Edit" for the Website, Store, or Store View where you want to apply the theme.
+
+Select "Poco Themes" from the Applied Theme drop down menu, and then click on the "Save Configuration" button.
+
+After that, clean all the caches of your store by going to System >> Tools >> Cache Management, and check the frontend to ensure that the theme has been applied successfully.

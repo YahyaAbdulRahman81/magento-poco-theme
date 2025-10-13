@@ -1,0 +1,35 @@
+############################################
+## Default Magento pub/.htaccess (2.4.8)
+
+## Deny access to sensitive files
+<Files composer.json>
+    Require all denied
+</Files>
+<Files composer.lock>
+    Require all denied
+</Files>
+<Files auth.json>
+    Require all denied
+</Files>
+<Files env.php>
+    Require all denied
+</Files>
+
+############################################
+## Rewrite static and media file requests
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Strip versioning from static/media URLs
+    RewriteRule ^(static|media)/version\d+/(.*)$ $1/$2 [L]
+
+    # Forward missing static files to static.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^static/(.*)$ /static.php?resource=$1 [L]
+
+    # Forward missing media files to get.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^media/(.*)$ /get.php?resource=$1 [L]
+</IfModule>

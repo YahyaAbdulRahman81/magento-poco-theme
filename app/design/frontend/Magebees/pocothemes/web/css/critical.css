@@ -1,0 +1,14 @@
+/* Minimal critical CSS for Poco Themes - ensures visible initial render */
+html,body{height:100%;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+*,*:before,*:after{box-sizing:border-box}
+body{color:#333;background:#fff;line-height:1.5}
+.page-wrapper,.header,.main,.footer{visibility:visible;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 15px}
+.page-wrapper{min-height:100vh}
+.header{background:#fff;padding:10px 0}
+.main{padding:20px 0;min-height:400px}
+img{max-width:100%;height:auto;vertical-align:middle}
+a{color:#1979c3;text-decoration:none}
+a:hover{text-decoration:underline}
+button{cursor:pointer}
+.search-drawer{background:#f5f5f5;padding:20px 0}

@@ -1,0 +1,43 @@
+<?php 
+$_product = $block->getProduct();
+if($_product):
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+$imageDisplayArea = $block->getDisplayArea();
+$aspect_ratio = $block->getAspectRatio();
+$image_width = $block->getImageWidth();
+$image_height = $block->getImageHeight();
+$DisableLazyLoad = $block->getDisableLazyload();
+
+$slider = $block->getSlider();
+if($aspect_ratio){
+	
+	$productImage = $_imagehelper->init($_product, $imageDisplayArea)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($image_width);
+	}else{
+	$productImage = $_imagehelper->init($_product, $imageDisplayArea)
+						->constrainOnly(TRUE)
+						->keepAspectRatio(false)
+						->keepFrame(TRUE)
+						->resize($image_width, $image_height);
+}
+$productImageUrl = $productImage->getUrl();
+//$image_info = $productImage->getResizedImageInfo();
+//$image_width = $image_info[0];
+//$image_height = $image_info[1];
+if ($image_width && $image_height) {
+		$ratio = $image_height / $image_width;
+	}else{
+	$ratio = 1;
+}
+?>
+<?php
+echo $this->helper('Magebees\Productlabel\Helper\Data')->getLabel($_product); ?>
+<span class="product-image-container" style="width:<?=$image_width ?>px;">
+<span class="product-image-wrapper" style="padding-bottom: <?= /* @escapeNotVerified */ ($ratio * 100) ?>%;">
+	<img class="product-image-photo <?php if(($slider)&&(!$DisableLazyLoad)): ?> swiper-lazy <?php endif; ?>" <?php if(!$DisableLazyLoad): ?> loading="lazy" <?php endif; ?> src="<?php echo $escaper->escapeUrl(urldecode($productImageUrl)) ?>"  width="<?php echo $image_width ?>" height="<?php echo $image_height ?>" alt="<?php echo $productImage->getLabel(); ?>"/>
+	<?php if(($slider)&&(!$DisableLazyLoad)): ?>
+	<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+	<?php endif; ?>
+</span>
+</span>
+<?php endif; ?>
+

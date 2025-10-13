@@ -1,0 +1,38 @@
+############################################
+## Magento 2 (safe minimal) pub/.htaccess
+
+## Deny access to sensitive files
+<Files "composer.json">
+  Require all denied
+</Files>
+<Files "composer.lock">
+  Require all denied
+</Files>
+<Files "auth.json">
+  Require all denied
+</Files>
+<Files "env.php">
+  Require all denied
+</Files>
+
+############################################
+## Rewrite static and media requests
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Strip versioning from URLs like /static/version12345/... or /media/version12345/...
+  RewriteRule ^(static|media)/version[0-9]+/(.*)$ $1/$2 [L]
+
+  # Static files fallback -> static.php
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^static/(.*)$ /static.php?resource=$1 [L]
+
+  # Media files fallback -> get.php
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^media/(.*)$ /get.php?resource=$1 [L]
+</IfModule>
+
+# optional: disable directory listing
+Options -Indexes

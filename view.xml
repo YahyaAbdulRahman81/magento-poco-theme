@@ -1,0 +1,6 @@
+<images module="Magento_Catalog">
+    <image id="category_page_grid" type="small_image">
+        <width>300</width>
+        <height>450</height>
+    </image>
+</images>

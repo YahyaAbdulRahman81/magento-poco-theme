@@ -1,0 +1,21 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
+?>
+<script>
+// Force CSS to load immediately (workaround for deferred CSS issue)
+(function() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('link[media="print"]').forEach(function(l) {
+                l.media = 'all';
+            });
+        });
+    } else {
+        document.querySelectorAll('link[media="print"]').forEach(function(l) {
+            l.media = 'all';
+        });
+    }
+})();
+</script>

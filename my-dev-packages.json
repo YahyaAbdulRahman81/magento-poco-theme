@@ -1,0 +1,14 @@
+[
+    "magento\/magento-allure-phpunit",
+    "dealerdirect\/phpcodesniffer-composer-installer",
+    "dg\/bypass-finals",
+    "friendsofphp\/php-cs-fixer",
+    "carlos-mg89\/oauth",
+    "magento\/magento-coding-standard",
+    "magento\/magento2-functional-testing-framework",
+    "pdepend\/pdepend",
+    "phpmd\/phpmd",
+    "phpstan\/phpstan",
+    "phpunit\/phpunit",
+    "symfony\/finder"
+]

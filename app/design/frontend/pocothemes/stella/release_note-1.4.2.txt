@@ -1,0 +1,4 @@
+- Compatible with Magento / Adobe Commerce 2.4.8 version.
+- Update modules for compatible with Magento 2.4.8
+- Bug fixes for import layouts and save configuration to generate css
+- Fixed bug for pagination issue on category page.

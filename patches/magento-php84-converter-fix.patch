@@ -1,0 +1,20 @@
+--- a/vendor/magento/framework/App/Config/Scope/Converter.php
++++ b/vendor/magento/framework/App/Config/Scope/Converter.php
+@@ -37,11 +37,17 @@ class Converter implements \Magento\Framework\Config\ConverterInterface
+         $segments = explode('/', $path);
+         $currentPointer = &$container;
+         foreach ($segments as $segment) {
+             if ($segment === '') {
+                 continue;
+             }
+             if (!isset($currentPointer[$segment])) {
+                 $currentPointer[$segment] = [];
+             }
++            // PHP 8.4 fix: check if current value is array before descending
++            if (!is_array($currentPointer[$segment])) {
++                // If it's a scalar, we can't descend further
++                return;
++            }
+             $currentPointer = &$currentPointer[$segment];
+         }
+         $currentPointer = $value;

@@ -1,0 +1,61 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+?>
+<?php $poco_helper = $this->helper('Magebees\PocoThemes\Helper\Data'); 
+$storeId = $poco_helper->getStoreId();
+$storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();
+$headerConfig =$poco_helper->getConfigGroup('header',$storeId);
+$header_style = $headerConfig['header_style'];
+$logo_image = array_key_exists('logo_image', $headerConfig) ? $headerConfig['logo_image'] : false;
+$header_style = array_key_exists('header_style', $headerConfig) ? $headerConfig['header_style'] : false;
+$logo_image_width = array_key_exists('logo_image_width', $headerConfig) ? $headerConfig['logo_image_width'] : false;
+$logo_image_height = array_key_exists('logo_image_height', $headerConfig) ? $headerConfig['logo_image_height'] : false;
+?>
+<?php if($logo_image): ?>
+    <?php $logo_image = $headerConfig['logo_image']; ?>
+<?php endif; ?>
+
+<?php if ($block->isHomePage()): ?>
+    <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+<?php else: ?>
+<?php if($header_style=="header-3"):  /* Show Inner Page different Logo For Header Style 3*/?>
+	<?php if(isset($headerConfig['innerpage_logo_image'])&& ($headerConfig['innerpage_logo_image'])): ?>
+    <?php $logo_image = $headerConfig['innerpage_logo_image']; ?>
+	<?php endif; ?>
+<?php endif;?>
+<a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+<?php endif ?>
+
+<?php if($logo_image): ?>
+    <?php $src = $poco_helper->getMediaUrl().'poco/logo/'.$logo_image; ?>
+<?php else: ?>
+    <?php $src = $block->getLogoSrc() ?>
+<?php endif; ?>
+<?php if($logo_image_width): 
+$block->setLogoWidth($logo_image_width);
+endif;
+?>
+<?php if($logo_image_height): 
+$block->setLogoHeight($logo_image_height);
+endif;
+?>
+        <img src="<?= /* @escapeNotVerified */ $src ?>"
+             title="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+             alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+             <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+             <?= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+        />
+<?php if ($block->isHomePage()):?>
+    </a>
+<?php else:?>
+    </a>
+<?php endif; ?>

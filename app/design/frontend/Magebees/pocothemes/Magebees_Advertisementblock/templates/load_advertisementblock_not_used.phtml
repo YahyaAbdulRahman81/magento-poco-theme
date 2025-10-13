@@ -1,0 +1,35 @@
+<?php 
+
+	$randon_number = rand();	
+	$res_div = '#adverticement'.$randon_number;
+	$loading_div = '#loadingImage'.$randon_number;
+	$url = $block->getUrl('poco/index/advertisement');
+	$poco_helper = $this->helper('Magebees\PocoThemes\Helper\Data');
+$loaderUrl = $poco_helper->getLoadingIcon();  
+$adverticementWidgetData = $this->getData();
+if(count($adverticementWidgetData)>0): 
+$adverticementWidgetEmptyOptions = array('template','wd_spacing','wd_bottom_spacing','wd_advertisement','wd_style','store_id','enabled','title','subtitle','advertisement','style','wd_custom_class');
+?>
+<div id="adverticement<?php echo $randon_number; ?>" class="ajx_loader">
+<div id="loadingImage<?php echo $randon_number; ?>" style="display:none;"></div>
+</div>
+ <script type="text/javascript">
+            require(['jquery','ajaxloading','domReady!'],function(jQuery){
+				var adverticementWidgetData = <?php echo json_encode($adverticementWidgetData); ?>;
+				var adverticementWidgetEmptyOptions = <?php echo json_encode($adverticementWidgetEmptyOptions); ?>;
+				var adverticementDataVar = {};
+				adverticementDataVar['url']='<?php echo $url ?>';
+				adverticementDataVar['res_div']='<?php echo $res_div ?>';
+				adverticementDataVar['loading_div']='<?php echo $loading_div ?>';
+				adverticementDataVar['loaderUrl']='<?php echo $loaderUrl ?>';
+				jQuery.each(adverticementWidgetEmptyOptions, function (i, elem) {
+					adverticementDataVar[i]=elem;
+				});
+				jQuery.each(adverticementWidgetData, function (i, elem) {
+					adverticementDataVar[i]=elem;
+				});
+				console.log(adverticementDataVar);
+				jQuery('<?= $res_div ?>').ajaxloading(adverticementDataVar);
+            });
+        </script>
+<?php endif; ?>
